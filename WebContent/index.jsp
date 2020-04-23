@@ -13,7 +13,7 @@
 <form action="ProcessInfo" method="post">
 	<p>Name</p>
 	<input type="text" name="name"/>
-	</br>
+	<br>
 	<input type="button" value="submit"/>
 </form>
 </body>
