@@ -36,8 +36,16 @@ public class ProcessInfo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/DisplayInfo.jsp";
-		String usersName = request.getParameter("name");
-		request.setAttribute("usersName", usersName);
+		String fName = request.getParameter("fname");
+		String lName = request.getParameter("lname");
+		String phone = request.getParameter("phone");
+		
+		// Update the DB
+		updateDB(fName, lName, phone);
+		// Create object to pass to DisplayInfo.jsp
+		Customer cust = new Customer(fName, lName, phone);
+		request.setAttribute("cust", cust);
+		
 		getServletContext()
 		.getRequestDispatcher(url)
 		.forward(request, response);

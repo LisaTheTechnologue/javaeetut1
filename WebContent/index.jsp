@@ -11,10 +11,13 @@
 <h3>Enter some data</h3>
 
 <form action="ProcessInfo" method="post">
-	<p>Name</p>
-	<input type="text" name="name"/>
-	<br>
-	<input type="submit" value="Send"/>
+<label>First Name : </label>
+<input type="text" name="fname"><br>
+<label>Last Name : </label>
+<input type="text" name="lname"><br>
+<label>Phone : </label>
+<input type="text" name="phone"><br>
+<input type="submit" value="Send">
 </form>
 </body>
 </html>
