@@ -1,6 +1,8 @@
 package com.mywebsite;
 
 import java.io.IOException;
+import java.sql.*;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,4 +43,38 @@ public class ProcessInfo extends HttpServlet {
 		.forward(request, response);
 	}
 
+	
+	protected void updateDB(String fName, String lName, String phone) {
+		Connection con;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url = "jdbc:mysql://localhost/test1";
+			String user = "dbadmin";
+			String pw = "javatut1";
+			// Used to issue queries to the DB
+	        con = DriverManager.getConnection(url, user, pw);
+	        
+	        // Sends queries to the DB for results
+	        Statement s = con.createStatement();
+	        
+	        // Add a new entry
+	        String query = "INSERT INTO CUSTOMER " + 
+	        "(first_name, last_name, phone, cust_id) " + 
+	        "VALUES ('" + fName + "', '" + lName + "', '" +
+	        phone + "', NULL)";
+	        
+	        // Execute the Query
+	        s.executeUpdate(query);
+	        
+	        // Close DB connection
+	        con.close();
+		} 
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
